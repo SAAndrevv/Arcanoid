@@ -34,9 +34,8 @@ namespace Arcanoid
 
             InitBall();
             InitPlatform();
-            dx = dy = -1;
-            xBall = yBall = 7;
-            
+            dx = dy = 1;
+            xBall = yBall = 0;
 
             MyTimer = new DispatcherTimer();
             MyTimer.Interval = TimeSpan.FromMilliseconds(500);
@@ -71,25 +70,8 @@ namespace Arcanoid
 
         private void SetBall(object sender, EventArgs e)
         {
-            
-            Console.WriteLine(dx);
             Grid.SetRow(Ball, xBall);
             Grid.SetColumn(Ball, yBall);
-
-            if (Grid.GetColumn(Ball) == 29 || Grid.GetColumn(Ball) == 0)
-            {
-                dy = -dy;
-                Console.WriteLine("Test1");
-                Console.WriteLine(Grid.GetColumn(Ball));
-
-            }
-            if (Grid.GetRow(Ball) == 0)
-            {
-                dx = -dx;
-                Console.WriteLine("Test2");
-            }
-            
-
             CheckColWithPlatform();
             xBall += dx; yBall += dy;
         }
@@ -98,8 +80,8 @@ namespace Arcanoid
         {
             if (Grid.GetRow(Ball) == zone)
             {
-                if (Grid.GetColumn(Ball) <= Grid.GetColumn(Platform) + 2 &&
-                    Grid.GetColumn(Ball) >= Grid.GetColumn(Platform))
+                if (Grid.GetRow(Ball) <= Grid.GetRow(Platform) + 2 &&
+                    Grid.GetRow(Ball) >= Grid.GetRow(Platform))
                 {
 
                 }
